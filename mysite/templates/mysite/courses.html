@@ -1,0 +1,29 @@
+{% extends 'mysite/base.html' %}
+
+{% block content %}
+
+    <div class="container" >
+
+        {% if courses %}
+            <div class="row">
+            {% for course in courses %}
+
+                <div class="col-md-4">
+
+                    <div class="card shadow-sm" style="width: 18rem;margin-top: 7%;">
+                        <img src="{{ course.thumbnail_url }}" class="card-img-top"
+                             alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ course.title }}</h5>
+                            <p class="card-text">{{ course.subtitle }}</p>
+                            <p class="card-text text-muted">Course Duration: {{ course.course_length }}</p>
+                            <a href="/courses/{{ course.id }}" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

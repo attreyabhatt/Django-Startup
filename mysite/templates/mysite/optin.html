@@ -1,0 +1,57 @@
+{% extends 'mysite/base.html' %}
+
+{% block content %}
+    <div class="container" style="margin-top: 5%">
+        <div class="row">
+
+
+            <div class="col-md-8 offset-md-2">
+
+                <div class="card">
+                    <div class="card-header">
+                        Email subscription
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Stay updated</h5>
+                        <p class="card-text">Whenever I post new content you will be updated on your email.</p>
+
+                        {% if optedin %}
+                        <h2>Thankyou</h2>
+                        {% else %}
+                        <form class="col-md-7" style="margin-left: -16px" action="{% url 'optin' %}" method="post">
+                            ​{% csrf_token %}
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control w-150" id="fname" name="fname"
+                                       placeholder="Your first name">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="name">Country</label>
+                                <input type="text" class="form-control" id="country" name="country"
+                                       placeholder="Country">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="name">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                       placeholder="Email">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
