@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Person, Course, Lesson, Section
+from .forms import UserRegistrationForm
+import json
 
 
 def index(request):
@@ -28,6 +30,20 @@ def courses_detailed(request, num):
     return render(request, 'mysite/course_details.html', context)
 
 
+def lessons_detailed(request, num, num1):
+    course = Course.objects.get(id=num)
+    sections = Section.objects.filter(course=course)
+    lessons = Lesson.objects.filter(course=course)
+    lesson = Lesson.objects.get(id=num1)
+    context = {
+        'current_lesson': lesson,
+        'course_obj': course,
+        'lessons': lessons,
+        'sections': sections,
+    }
+    return render(request, 'mysite/lesson_details.html', context)
+
+
 def blog(request):
     return render(request, 'mysite/blog.html')
 
@@ -49,3 +65,31 @@ def optin(request):
         return render(request, 'mysite/optin.html', context)
     else:
         return render(request, 'mysite/optin.html')
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            print(username)
+            return redirect('courses')
+        else:
+            error_json = json.loads(form.errors.as_json())
+            errors = error_json["password2"][0]['message']
+            form = UserRegistrationForm()
+
+            context = {
+                'form': form,
+                'errors': errors,
+            }
+
+            return render(request, 'mysite/signup.html', context)
+
+    else:
+        form = UserRegistrationForm()
+        context = {
+            'form': form,
+        }
+        return render(request, 'mysite/signup.html', context)

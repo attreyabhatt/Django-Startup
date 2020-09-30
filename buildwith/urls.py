@@ -25,4 +25,7 @@ urlpatterns = [
     path('optin/', views.optin, name='optin'),
     path('pricing/', views.pricing, name='pricing'),
     path('courses/<int:num>/', views.courses_detailed, name='details'),
+    path('courses/<int:num>/<int:num1>/', views.lessons_detailed, name='lesson_details'),
+    path('signup/', views.signup, name='signup'),
+
 ]

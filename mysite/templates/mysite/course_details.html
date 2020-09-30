@@ -65,7 +65,7 @@
                                 <div class="card-body shadow">
                                     {% for lesson in lessons %}
                                         {% if lesson.section == section %}
-                                            <a href="#" style="color: #138496;text-decoration: none;">{{ forloop.counter }}. {{ lesson.title }}</a>
+                                            <a href="/courses/{{ course_obj.id }}/{{ lesson.id }}" style="color: #138496;text-decoration: none;">{{ forloop.counter }}. {{ lesson.title }}</a>
                                             <br>
                                         {% endif %}
                                     {% endfor %}

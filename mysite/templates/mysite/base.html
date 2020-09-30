@@ -74,7 +74,13 @@
                     </div>
 
                 </li>
-
+                <li>
+                    <a href="{% url 'signup' %}">
+                        <button type="button" class="btn btn-info mx-1">
+                            Enroll
+                        </button>
+                    </a>
+                </li>
 
             </ul>
 
@@ -108,8 +114,10 @@
             </div>
             <div class="col-md-6 text-dark my-auto">
                 <ul style="list-style-type:none;">
-                    <li><a href="{% url 'courses' %}" class="text-dark" target="_blank" style="text-decoration: none">Courses</a></li>
-                    <li><a href="{% url 'pricing' %}" class="text-dark" target="_blank" style="text-decoration: none;">Pricing</a></li>
+                    <li><a href="{% url 'courses' %}" class="text-dark" target="_blank" style="text-decoration: none">Courses</a>
+                    </li>
+                    <li><a href="{% url 'pricing' %}" class="text-dark" target="_blank" style="text-decoration: none;">Pricing</a>
+                    </li>
                     <li><a href="" class="text-dark" target="_blank" style="text-decoration: none;">Privacy Policy</a>
                     </li>
                 </ul>
