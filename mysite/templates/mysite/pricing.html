@@ -1,13 +1,17 @@
 {% extends 'mysite/base.html' %}
 
 {% block content %}
+
+
+
     <div class="container">
         <div class="row">
             <div class="col-md-12 mx-auto">
                 <div class="jumbotron jumbotron-fluid bg-transparent">
                     <div class="container text-center">
-                        <h1 class="display-4">Subscribe to Premium Packages</h1>
-                        <p class="lead">ENJOY PREMIUM CONTENT AT AFFORDABLE PRICE</p>
+                        <h1 class="display-4">Invest in yourself and Build Your Future</h1>
+                        <p class="lead">At $10/month, you'll learn how to build your own web apps and software
+                            projects.</p>
                     </div>
                 </div>
             </div>
@@ -16,26 +20,50 @@
             <div class="col-md-4 mx-auto text-center">
                 <div class="card">
                     <h5 class="card-header">Developer</h5>
-                    <div class="card-body text-center">
-                        <h5 class="card-title">$10 | &#8377;697 / month</h5>
-                        <ul style="list-style-type: none;margin-left: -10%">
-                            <li>
+                    <div class="card-body">
+                        <h5 class="card-title">$10/month</h5>
+                        <ul class="list-group list-group-flush" style="">
+                            <li class="list-group-item">
+                                Access to all courses on this website
+                            </li>
+                            <li class="list-group-item">
                                 HD Video Quality
                             </li>
-                            <li>
-                                Access to all courses
-                            </li>
-                            <li>
+                            <li class="list-group-item">
                                 Error Support
                             </li>
-                            <li>
+                            <li class="list-group-item">
                                 Members only community
                             </li>
-                            <li>
+                            <li class="list-group-item">
                                 No Advertisements
                             </li>
+                            <li class="list-group-item">
+                                <div id="paypal-button-container"></div>
+                                <script src="https://www.paypal.com/sdk/js?client-id=ASav-uWk4lFGp8dpwqfOcs6Dx53LMVw3SqB3C3gyhvM9P6XYpLnhns-_gNJrQc4QMgA2r38sAdnkF4nv&vault=true"
+                                        data-sdk-integration-source="button-factory"></script>
+                                <script>
+                                    paypal.Buttons({
+                                        style: {
+                                            shape: 'rect',
+                                            color: 'gold',
+                                            layout: 'vertical',
+                                            label: 'subscribe'
+                                        },
+                                        createSubscription: function (data, actions) {
+                                            return actions.subscription.create({
+                                                'plan_id': 'P-2A819977V9409100SL55TIKI'
+                                            });
+                                        },
+                                        onApprove: function (data, actions) {
+                                            alert(data.subscriptionID);
+                                        }
+                                    }).render('#paypal-button-container');
+                                </script>
+
+                            </li>
                         </ul>
-                        <a href="#" class="btn btn-primary mx-auto">Get Started</a>
+
                     </div>
                 </div>
             </div>
@@ -47,75 +75,143 @@
 
                 <h1 class="text-center" style="margin-bottom: 2%">Frequently Asked Questions</h1>
                 <div class="accordion" id="accordionExample">
-                    <div class="card">
-                        <div class="card-header" id="headingOne">
+
+                    <!-- First Question -->
+                    <div class="card my-1 shadow-sm">
+                        <div class="card-header bg-transparent" id="headingOne">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                <button class="btn btn-white btn-block text-left collapsed" type="button"
                                         data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
                                         aria-controls="collapseOne">
-                                    What is your Starter Subscription Packages?
+
+                                    Q - What is your Subscription Package?
+
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                         class="bi bi-plus-circle float-right"
+                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                    </svg>
+
                                 </button>
                             </h2>
                         </div>
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                              data-parent="#accordionExample">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            <div class="card-body shadow">
+                                We publish various quality Video Courses on the most demanding
+                                technologies. There are around 10+ HD quality courses,So if you subscribe for 10$/month
+                                then you will get access on all these
+                                10+ video courses + New courses that will be published. As well as you get access
+                                to complete support on your errors and a private discord server.
+                                <p>
+                                <p>
+                                    Kindly check complete list of Video Courses included in this Package <a
+                                        href="{% url 'courses' %}" class="text-info">Members Video Courses</a></p></p>
+
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingTwo">
+
+                    <!-- Second Question -->
+                    <div class="card my-1 shadow-sm">
+                        <div class="card-header bg-transparent" id="headingTwo">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                <button class="btn btn-white btn-block text-left collapsed" type="button"
                                         data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                                         aria-controls="collapseTwo">
-                                    What is your Starter Subscription Packages?
+
+                                    Q - Can I cancel my subscription whenever I want?
+
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                         class="bi bi-plus-circle float-right"
+                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                    </svg>
+
                                 </button>
                             </h2>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                              data-parent="#accordionExample">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                Yes you can cancel it whenever you want using our interface or directly ending it from
+                                paypal.
+                                After ending it you will have access to the courses till the end of your 30 day period
+                                of the last purchase.
+
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingThree">
+
+                    <!-- Third Question -->
+                    <div class="card my-1 shadow-sm">
+                        <div class="card-header bg-transparent" id="headingThree">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                <button class="btn btn-white btn-block text-left collapsed" type="button"
                                         data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
-                                    Collapsible Group Item #3
+
+                                    Q - How can I have subscriptions for my whole team?
+
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                         class="bi bi-plus-circle float-right"
+                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                    </svg>
+
                                 </button>
                             </h2>
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
                              data-parent="#accordionExample">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                If you are looking for bulk subscriptions for your team then kindly contact at
+                                attreya01@gmail.com
+
                             </div>
                         </div>
                     </div>
+
+                    <!-- 4th Question -->
+                    <div class="card my-1 shadow-sm">
+                        <div class="card-header bg-transparent" id="headingFour">
+                            <h2 class="mb-0">
+                                <button class="btn btn-white btn-block text-left collapsed" type="button"
+                                        data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
+                                        aria-controls="collapseFour">
+
+                                    Q - I still have a Question?
+
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                         class="bi bi-plus-circle float-right"
+                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                    </svg>
+
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                             data-parent="#accordionExample">
+                            <div class="card-body">
+                                Kindly contact me at my personal email - attreya01@gmail.com
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

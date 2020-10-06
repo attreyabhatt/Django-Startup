@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Person, Course, Lesson, Section
+from .models import *
 from .forms import UserRegistrationForm
 import json
+from django.contrib.auth import authenticate, login
+from utilities import *
 
 
 def index(request):
@@ -35,16 +37,26 @@ def lessons_detailed(request, num, num1):
     sections = Section.objects.filter(course=course)
     lessons = Lesson.objects.filter(course=course)
     lesson = Lesson.objects.get(id=num1)
+    comments = Comment.objects.filter(lesson=lesson)
+
+    if request.method == 'POST':
+        comment = request.POST.get('comment')
+
+        comment_info = Comment(user_given=request.user, lesson=lesson, content=comment)
+        comment_info.save()
+
     context = {
         'current_lesson': lesson,
         'course_obj': course,
         'lessons': lessons,
         'sections': sections,
+        'comments': comments,
     }
     return render(request, 'mysite/lesson_details.html', context)
 
 
 def blog(request):
+    subscribe(request)
     return render(request, 'mysite/blog.html')
 
 
@@ -73,11 +85,18 @@ def signup(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            print(username)
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
             return redirect('courses')
+
         else:
             error_json = json.loads(form.errors.as_json())
-            errors = error_json["password2"][0]['message']
+            print(error_json)
+            try:
+                errors = error_json["password2"][0]['message']
+            except:
+                errors = error_json["username"][0]['message']
             form = UserRegistrationForm()
 
             context = {
@@ -93,3 +112,7 @@ def signup(request):
             'form': form,
         }
         return render(request, 'mysite/signup.html', context)
+
+
+def profile(request):
+    return render(request, 'mysite/profile.html')

@@ -32,7 +32,11 @@
                         </li>
                     </ul>
                     <div class="card-body">
-                        <button type="button" class="btn btn-info">Subscribe now</button>
+                        {% if user.student.subscribed %}
+
+                        {% else %}
+                            <button type="button" class="btn btn-danger">Enroll now</button>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -47,7 +51,8 @@
                                 <h2 class="mb-0">
                                     <button class="btn btn-light btn-block text-left" type="button"
                                             data-toggle="collapse"
-                                            data-target="#collapse{{ forloop.counter }}" aria-expanded="true" aria-controls="collapseOne">
+                                            data-target="#collapse{{ forloop.counter }}" aria-expanded="true"
+                                            aria-controls="collapseOne">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle"
                                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd"
@@ -65,7 +70,8 @@
                                 <div class="card-body shadow">
                                     {% for lesson in lessons %}
                                         {% if lesson.section == section %}
-                                            <a href="/courses/{{ course_obj.id }}/{{ lesson.id }}" style="color: #138496;text-decoration: none;">{{ forloop.counter }}. {{ lesson.title }}</a>
+                                            <a href="/courses/{{ course_obj.id }}/{{ lesson.id }}"
+                                               style="color: #138496;text-decoration: none;">{{ forloop.counter }}. {{ lesson.title }}</a>
                                             <br>
                                         {% endif %}
                                     {% endfor %}

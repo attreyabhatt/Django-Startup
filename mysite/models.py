@@ -1,7 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
+
+
+class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    subscribed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username
+
 
 class Person(models.Model):
     name = models.CharField(max_length=20)
@@ -39,11 +49,29 @@ class Section(models.Model):
         return self.title
 
 
+PREVIEW = (("yes", "yes"), ("no", "no"))
+
+
 class Lesson(models.Model):
     title = models.CharField(max_length=500)
     video_url = models.CharField(max_length=1000)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     section = models.ForeignKey(Section, on_delete=models.CASCADE, null=True)
+    preview = models.CharField(
+        max_length=20,
+        choices=PREVIEW,
+        default='no'
+    )
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    user_given = models.ForeignKey(User, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    content = models.CharField(max_length=10000)
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+    def __str__(self):
+        return self.content
