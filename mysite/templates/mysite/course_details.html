@@ -68,13 +68,15 @@
                             <div id="collapse{{ forloop.counter }}" class="collapse show" aria-labelledby="headingOne"
                                  data-parent="#accordionExample">
                                 <div class="card-body shadow">
-                                    {% for lesson in lessons %}
-                                        {% if lesson.section == section %}
-                                            <a href="/courses/{{ course_obj.id }}/{{ lesson.id }}"
-                                               style="color: #138496;text-decoration: none;">{{ forloop.counter }}. {{ lesson.title }}</a>
-                                            <br>
-                                        {% endif %}
-                                    {% endfor %}
+                                    <ul class="list-group list-group-flush">
+                                        {% for lesson in lessons %}
+                                            {% if lesson.section == section %}
+                                                <a href="/courses/{{ course_obj.id }}/{{ lesson.id }}"
+                                                   class="list-group-item list-group-item-action">{{ forloop.counter }}. {{ lesson.title }}
+                                                </a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
                                 </div>
                             </div>
                         </div>

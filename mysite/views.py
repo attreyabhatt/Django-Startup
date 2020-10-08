@@ -36,14 +36,26 @@ def lessons_detailed(request, num, num1):
     course = Course.objects.get(id=num)
     sections = Section.objects.filter(course=course)
     lessons = Lesson.objects.filter(course=course)
+
+    # current lesson
     lesson = Lesson.objects.get(id=num1)
+
     comments = Comment.objects.filter(lesson=lesson)
+    replies = Reply.objects.filter(lesson=lesson)
 
     if request.method == 'POST':
-        comment = request.POST.get('comment')
 
-        comment_info = Comment(user_given=request.user, lesson=lesson, content=comment)
-        comment_info.save()
+        if request.POST.get('form-type') == 'comment-post':
+            comment = request.POST.get('comment')
+            comment_info = Comment(user_given=request.user, lesson=lesson, content=comment)
+            comment_info.save()
+
+        else:
+            reply = request.POST.get('reply')
+            comment_id = request.POST.get('comment_id')
+            current_comment = Comment.objects.get(id=comment_id)
+            reply_info = Reply(user_given=request.user, reply_content=reply, comment_on=current_comment,lesson=lesson)
+            reply_info.save()
 
     context = {
         'current_lesson': lesson,
@@ -51,6 +63,7 @@ def lessons_detailed(request, num, num1):
         'lessons': lessons,
         'sections': sections,
         'comments': comments,
+        'replies': replies,
     }
     return render(request, 'mysite/lesson_details.html', context)
 

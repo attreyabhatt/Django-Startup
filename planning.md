@@ -41,11 +41,13 @@ Homepage
  
  Today's Objectives
  1) Payment Paypal
+  - 0) Redirect the user on activation page + Save subID and subtime on Student Database
   - 1) Make sure the aprroval is secure - Api call to paypal + SubID + billing amt is zero ( for pending payments)
   - 2) Unsubscribe from our website - Delete Student model + Call to Paypal that the user has unsubed
   - 3) Unsubscribe from Paypal Interface - django Cron job
   - 4) Subscribed Date + Unsub after 30 days
   - 5) We need to do it for live instead of Sandbox
+  
   
  2) Comments/Discussion
  
